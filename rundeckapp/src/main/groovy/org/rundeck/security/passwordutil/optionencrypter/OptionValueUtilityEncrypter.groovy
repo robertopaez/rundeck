@@ -60,13 +60,18 @@ class OptionValueUtilityEncrypter implements PasswordUtilityEncrypter {
 
         StandardPBEStringEncryptor encryptor = map.get(providerName)
         if(!encryptor){
-            Class clazz = Class.forName(providerName);
-            if(!OptionEncryptor.class.isAssignableFrom(clazz)) {
+            try{
+                Class clazz = Class.forName(providerName);
+                if(!OptionEncryptor.class.isAssignableFrom(clazz)) {
+                    return null
+                }
+
+                OptionEncryptor provider = (OptionEncryptor) clazz.newInstance();
+                return provider.encryptor
+            }catch(Exception e){
                 return null
             }
 
-            OptionEncryptor provider = (OptionEncryptor) clazz.newInstance();
-            return provider.encryptor
         }
         return encryptor
 
