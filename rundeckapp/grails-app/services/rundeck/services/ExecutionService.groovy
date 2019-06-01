@@ -61,6 +61,7 @@ import org.apache.log4j.MDC
 import org.hibernate.StaleObjectStateException
 import org.hibernate.criterion.CriteriaSpecification
 import org.hibernate.type.StandardBasicTypes
+import org.rundeck.security.passwordutil.optionencrypter.OptionValueUtilityEncrypter
 import org.rundeck.storage.api.StorageException
 import org.rundeck.util.Sizes
 import org.springframework.context.ApplicationContext
@@ -89,6 +90,7 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentMap
+import java.util.regex.Matcher
 import java.util.regex.Pattern
 import java.util.stream.Collectors
 
@@ -1311,6 +1313,7 @@ class ExecutionService implements ApplicationContextAware, StepExecutor, NodeSte
     public static String ABORT_PENDING = "pending"
     public static String ABORT_ABORTED = "aborted"
     public static String ABORT_FAILED = "failed"
+    public static String OPTION_ENC_PATTERN="ENC\\([\\\"|\\'](.*)[\\\"|\\']\\)"
 
     public String getExecutionState(Execution e) {
         e.executionState
@@ -1395,6 +1398,23 @@ class ExecutionService implements ApplicationContextAware, StepExecutor, NodeSte
                     if(option.multivalued){
                         optsmap["${option.name}.delimiter"]=option.delimiter
                     }
+                }
+            }
+        }
+
+        Pattern p = Pattern.compile(OPTION_ENC_PATTERN)
+
+        def optionEncryptorProvider = configurationService.getString(
+                'option.encryptor.provider',
+                'org.rundeck.security.passwordutil.optionencrypter.DefaultOptionEncrypter'
+        )
+
+        optsmap.each {option->
+            Matcher m = p.matcher(option.value);
+            if(m.matches()){
+                String decryptedString = OptionValueUtilityEncrypter.decrypt(m.group(1),optionEncryptorProvider)
+                if(decryptedString){
+                    option.value = decryptedString
                 }
             }
         }

@@ -82,7 +82,9 @@ dependencies {
         'com.fasterxml.jackson.core:jackson-annotations:2.8.0',
         'org.yaml:snakeyaml:1.17',
         'com.squareup.retrofit2:retrofit:2.2.0',
-        'com.squareup.retrofit2:converter-jackson:2.2.0'
+        'com.squareup.retrofit2:converter-jackson:2.2.0',
+        'org.jasypt:jasypt:1.9.2'
+
 
 
     compile ('commons-httpclient:commons-httpclient:3.0.1') {

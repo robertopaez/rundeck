@@ -793,6 +793,11 @@ class ExecutionServiceTests  {
                 null
             }
         }
+        service.configurationService = mockWith(ConfigurationService){
+            getString(1..1) {  property,defValue->
+                ""
+            }
+        }
         //create mock user
         User u1 = new User(login: 'testuser')
         u1.save()
@@ -823,6 +828,11 @@ class ExecutionServiceTests  {
         service.jobStateService = mockWith(JobStateService) {
             jobServiceWithAuthContext { ctx ->
                 null
+            }
+        }
+        service.configurationService = mockWith(ConfigurationService){
+            getString(1..1) {  property,defValue->
+                ""
             }
         }
         //create mock user
@@ -871,6 +881,12 @@ class ExecutionServiceTests  {
                 null
             }
         }
+        service.configurationService = mockWith(ConfigurationService){
+            getString(1..1) {  property,defValue->
+                ""
+            }
+        }
+
         //create mock user
         User u1 = new User(login: 'testuser')
         u1.save()
@@ -904,6 +920,12 @@ class ExecutionServiceTests  {
                 null
             }
         }
+        service.configurationService = mockWith(ConfigurationService){
+            getString(1..1) {  property,defValue->
+                ""
+            }
+        }
+
         //create mock user
         User u1 = new User(login: 'testuser')
         u1.save()
@@ -935,6 +957,11 @@ class ExecutionServiceTests  {
                 null
             }
         }
+        service.configurationService = mockWith(ConfigurationService){
+            getString(1..1) {  property,defValue->
+                ""
+            }
+        }
         //create mock user
         User u1 = new User(login: 'testuser')
         u1.save()
@@ -960,6 +987,11 @@ class ExecutionServiceTests  {
         service.jobStateService = mockWith(JobStateService) {
             jobServiceWithAuthContext { ctx ->
                 null
+            }
+        }
+        service.configurationService = mockWith(ConfigurationService){
+            getString(1..1) {  property,defValue->
+                ""
             }
         }
         //create mock user
@@ -1024,6 +1056,11 @@ class ExecutionServiceTests  {
                 null
             }
         }
+        service.configurationService = mockWith(ConfigurationService){
+            getString(1..1) {  property,defValue->
+                ""
+            }
+        }
         //create mock user
         User u1 = new User(login: 'testuser')
         u1.save()
@@ -1065,6 +1102,11 @@ class ExecutionServiceTests  {
                 null
             }
         }
+        service.configurationService = mockWith(ConfigurationService){
+            getString(1..1) {  property,defValue->
+                ""
+            }
+        }
         //create mock user
         User u1 = new User(login: 'testuser')
         u1.save()
@@ -1096,6 +1138,11 @@ class ExecutionServiceTests  {
         service.jobStateService = mockWith(JobStateService) {
             jobServiceWithAuthContext { ctx ->
                 null
+            }
+        }
+        service.configurationService = mockWith(ConfigurationService){
+            getString(1..1) {  property,defValue->
+                ""
             }
         }
         //create mock user
@@ -1144,6 +1191,11 @@ class ExecutionServiceTests  {
         service.jobStateService = mockWith(JobStateService) {
             jobServiceWithAuthContext { ctx ->
                 null
+            }
+        }
+        service.configurationService = mockWith(ConfigurationService){
+            getString(1..1) {  property,defValue->
+                ""
             }
         }
         //create mock user
@@ -1206,6 +1258,11 @@ class ExecutionServiceTests  {
                 null
             }
         }
+        service.configurationService = mockWith(ConfigurationService){
+            getString(1..1) {  property,defValue->
+                ""
+            }
+        }
         //create mock user
         User u1 = new User(login: 'testuser')
         u1.save()
@@ -1249,6 +1306,11 @@ class ExecutionServiceTests  {
         service.jobStateService = mockWith(JobStateService) {
             jobServiceWithAuthContext { ctx ->
                 null
+            }
+        }
+        service.configurationService = mockWith(ConfigurationService){
+            getString(1..1) {  property,defValue->
+                ""
             }
         }
         //create mock user
@@ -1726,6 +1788,11 @@ class ExecutionServiceTests  {
                 null
             }
         }
+        service.configurationService = mockWith(ConfigurationService){
+            getString(1..1) {  property,defValue->
+                ""
+            }
+        }
 
         def newCtxt=service.createJobReferenceContext(job,null,context,['-test1','value'] as String[],null,null,null,null,null,null, false,false,true);
 
@@ -1804,6 +1871,11 @@ class ExecutionServiceTests  {
         service.fileUploadService = mockWith(FileUploadService){
             executionBeforeStart { evt, skip->
                 null
+            }
+        }
+        service.configurationService = mockWith(ConfigurationService){
+            getString(1..1) {  property,defValue->
+                ""
             }
         }
 
@@ -1894,6 +1966,11 @@ class ExecutionServiceTests  {
         service.jobStateService = mockWith(JobStateService) {
             jobServiceWithAuthContext { ctx ->
                 null
+            }
+        }
+        service.configurationService = mockWith(ConfigurationService){
+            getString(1..1) {  property,defValue->
+                ""
             }
         }
         def newCtxt=service.createJobReferenceContext(job,null,context,['test1','${option.monkey}'] as String[],null,null,null, null, null,null, false,false,true);
@@ -1994,6 +2071,11 @@ class ExecutionServiceTests  {
         service.jobStateService = mockWith(JobStateService) {
             jobServiceWithAuthContext { ctx ->
                 null
+            }
+        }
+        service.configurationService = mockWith(ConfigurationService){
+            getString(1..1) {  property,defValue->
+                ""
             }
         }
         def newCtxt=service.createJobReferenceContext(job,null,context,

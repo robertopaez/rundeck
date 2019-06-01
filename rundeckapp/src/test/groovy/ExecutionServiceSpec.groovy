@@ -43,6 +43,7 @@ import grails.testing.services.ServiceUnitTest
 import grails.testing.spring.AutowiredTest
 import org.grails.events.bus.SynchronousEventBus
 import org.grails.plugins.metricsweb.MetricService
+import org.rundeck.security.passwordutil.optionencrypter.OptionValueUtilityEncrypter
 import org.rundeck.storage.api.PathUtil
 import org.rundeck.storage.api.StorageException
 import org.springframework.context.MessageSource
@@ -528,6 +529,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.fileUploadService = Mock(FileUploadService)
         service.storageService = Mock(StorageService)
         service.jobStateService = Mock(JobStateService)
+        service.configurationService = Stub(ConfigurationService)
 
         when:
 
@@ -585,6 +587,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.fileUploadService = Mock(FileUploadService)
         service.storageService = Mock(StorageService)
         service.jobStateService = Mock(JobStateService)
+        service.configurationService = Stub(ConfigurationService)
 
         when:
 
@@ -648,6 +651,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.fileUploadService = Mock(FileUploadService)
         service.storageService = Mock(StorageService)
         service.jobStateService = Mock(JobStateService)
+        service.configurationService = Stub(ConfigurationService)
 
         when:
 
@@ -727,6 +731,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.storageService = Mock(StorageService)
         service.jobStateService = Mock(JobStateService)
         service.storageService = Mock(StorageService)
+        service.configurationService = Stub(ConfigurationService)
 
         when:
 
@@ -803,6 +808,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.fileUploadService = Mock(FileUploadService)
         service.storageService = Mock(StorageService)
         service.jobStateService = Mock(JobStateService)
+        service.configurationService = Stub(ConfigurationService)
 
         when:
 
@@ -873,6 +879,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.fileUploadService = Mock(FileUploadService)
         service.storageService = Mock(StorageService)
         service.jobStateService = Mock(JobStateService)
+        service.configurationService = Stub(ConfigurationService)
 
         def contextNode = nodename ? new NodeEntryImpl(nodename) : null
 
@@ -985,6 +992,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.jobStateService = Mock(JobStateService) {
             1 * jobServiceWithAuthContext(_)
         }
+        service.configurationService = Stub(ConfigurationService)
 
         Execution se = new Execution(
                 argString: "-test args",
@@ -1021,6 +1029,8 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.jobStateService = Mock(JobStateService) {
             1 * jobServiceWithAuthContext(_)
         }
+
+        service.configurationService = Stub(ConfigurationService)
 
         User user = new User(login: 'testuser', password: '12345', email: 'email@test.com')
         user.save(flush: true)
@@ -1061,6 +1071,8 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.jobStateService = Mock(JobStateService) {
             1 * jobServiceWithAuthContext(_)
         }
+
+        service.configurationService = Stub(ConfigurationService)
 
         Execution se = new Execution(
                 argString: "-test args",
@@ -2425,6 +2437,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
             1 * jobServiceWithAuthContext(_)
         }
         service.rundeckNodeService = Mock(NodeService){}
+        service.configurationService = Stub(ConfigurationService)
 
         Execution se = new Execution(
                 argString: "-test args",
@@ -2577,6 +2590,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
             1 * jobServiceWithAuthContext(_)
         }
         service.rundeckNodeService = Mock(NodeService){}
+        service.configurationService = Stub(ConfigurationService)
 
         Execution se = new Execution(
                 argString: "-test args",
@@ -2642,6 +2656,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.executionUtilService = Mock(ExecutionUtilService)
         service.storageService = Mock(StorageService)
         service.jobStateService = Mock(JobStateService)
+        service.configurationService = Stub(ConfigurationService)
         service.frameworkService = Mock(FrameworkService) {
             authorizeProjectJobAll(*_) >> true
             filterAuthorizedNodes(_, _, _, _) >> { args ->
@@ -2744,6 +2759,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.executionUtilService = Mock(ExecutionUtilService)
         service.storageService = Mock(StorageService)
         service.jobStateService = Mock(JobStateService)
+        service.configurationService = Stub(ConfigurationService)
         service.frameworkService = Mock(FrameworkService) {
             authorizeProjectJobAll(*_) >> true
             filterAuthorizedNodes(_, _, _, _) >> { args ->
@@ -3093,6 +3109,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.executionUtilService = Mock(ExecutionUtilService)
         service.storageService = Mock(StorageService)
         service.jobStateService = Mock(JobStateService)
+        service.configurationService = Stub(ConfigurationService)
         service.frameworkService = Mock(FrameworkService) {
             authorizeProjectJobAll(*_) >> true
             filterAuthorizedNodes(_, _, _, _) >> { args ->
@@ -3202,6 +3219,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.executionUtilService = Mock(ExecutionUtilService)
         service.storageService = Mock(StorageService)
         service.jobStateService = Mock(JobStateService)
+        service.configurationService = Stub(ConfigurationService)
         service.frameworkService = Mock(FrameworkService) {
             authorizeProjectJobAll(*_) >> true
             filterAuthorizedNodes(_, _, _, _) >> { args ->
@@ -3320,6 +3338,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.fileUploadService = Mock(FileUploadService)
         service.storageService = Mock(StorageService)
         service.jobStateService = Mock(JobStateService)
+        service.configurationService = Stub(ConfigurationService)
 
         when:
 
@@ -3531,6 +3550,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         }
         service.storageService = Mock(StorageService)
         service.jobStateService = Mock(JobStateService)
+        service.configurationService = Stub(ConfigurationService)
 
         when:
 
@@ -3596,6 +3616,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.fileUploadService = Mock(FileUploadService)
         service.storageService = Mock(StorageService)
         service.jobStateService = Mock(JobStateService)
+        service.configurationService = Stub(ConfigurationService)
 
         when:
 
@@ -3654,6 +3675,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.fileUploadService = Mock(FileUploadService)
         service.storageService = Mock(StorageService)
         service.jobStateService = Mock(JobStateService)
+        service.configurationService = Stub(ConfigurationService)
 
         when:
 
@@ -3715,6 +3737,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.executionUtilService = Mock(ExecutionUtilService)
         service.storageService = Mock(StorageService)
         service.jobStateService = Mock(JobStateService)
+        service.configurationService = Stub(ConfigurationService)
         service.frameworkService = Mock(FrameworkService) {
             authorizeProjectJobAll(*_) >> true
             filterAuthorizedNodes(_, _, _, _) >> { args ->
@@ -3824,6 +3847,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.executionUtilService = Mock(ExecutionUtilService)
         service.storageService = Mock(StorageService)
         service.jobStateService = Mock(JobStateService)
+        service.configurationService = Stub(ConfigurationService)
         service.frameworkService = Mock(FrameworkService) {
             authorizeProjectJobAll(*_) >> true
             filterAuthorizedNodes(_, _, _, _) >> { args ->
@@ -3937,6 +3961,8 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.storageService = Mock(StorageService)
         service.jobStateService = Mock(JobStateService)
         service.storageService = Mock(StorageService)
+        service.configurationService = Stub(ConfigurationService)
+
         def authContext = Mock(AuthContext)
         when:
 
@@ -4020,6 +4046,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.storageService = Mock(StorageService)
         service.jobStateService = Mock(JobStateService)
         service.storageService = Mock(StorageService)
+        service.configurationService = Stub(ConfigurationService)
 
         when:
 
@@ -4084,6 +4111,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.executionUtilService = Mock(ExecutionUtilService)
         service.storageService = Mock(StorageService)
         service.jobStateService = Mock(JobStateService)
+        service.configurationService = Stub(ConfigurationService)
         service.frameworkService = Mock(FrameworkService) {
             authorizeProjectJobAll(*_) >> true
             filterAuthorizedNodes(_, _, _, _) >> { args ->
@@ -4201,6 +4229,7 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         service.frameworkService = Mock(FrameworkService)
         service.storageService = Mock(StorageService)
         service.jobStateService = Mock(JobStateService)
+        service.configurationService = Stub(ConfigurationService)
 
         Execution se = new Execution(
                 argString: "-test args",
@@ -4297,5 +4326,42 @@ class ExecutionServiceSpec extends Specification implements ServiceUnitTest<Exec
         e2 != null
         e2.filter == "name: SelectedNode"
         e2.filterExclude == null
+    }
+
+    def "Create execution context with encrypted option"() {
+        given:
+
+        def optionEncryptedProvider = "org.rundeck.security.passwordutil.optionencrypter.DefaultOptionEncrypter"
+        service.frameworkService = Mock(FrameworkService)
+        service.storageService = Mock(StorageService)
+        service.jobStateService = Mock(JobStateService)
+        service.configurationService = Stub(ConfigurationService){
+            getString("option.encryptor.provider",_)>>optionEncryptedProvider
+        }
+
+
+        //default encrypt option
+        System.setProperty("rd.option.enc.password","masterKey")
+        OptionValueUtilityEncrypter encrypter = new OptionValueUtilityEncrypter()
+        Map params = [:]
+        params.valueToEncrypt = "passwordTest"
+        params.provider = optionEncryptedProvider
+        def optionEncrypted = encrypter.encrypt(params)
+
+        Execution se = new Execution(
+                argString: "-test " + optionEncrypted["option"],
+                user: "testuser",
+                project: "testproj",
+                loglevel: 'WARN',
+                doNodedispatch: true,
+                filter:'tags: running',
+                filterExclude:'name: nodea'
+        )
+
+        when:
+        def val = service.createContext(se, null, null, null, null, null, null)
+        then:
+        val != null
+        val.dataContext['option']['test']=="passwordTest"
     }
 }
